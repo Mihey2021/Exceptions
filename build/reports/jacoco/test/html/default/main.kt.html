@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Posts</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">main.kt</span></div><h1>main.kt</h1><pre class="source lang-java linenums">import com.sun.xml.internal.ws.api.message.Attachment
+import data.*
+import exceptions.PostNotFoundException
+import service.WallService
+
+fun main() {
+    //РЎРѕР·РґР°РґРёРј РЅРµСЃРєРѕР»СЊРєРѕ РїРѕСЃС‚РѕРІ Рё РґРѕР±Р°РІРёРј РёС… РЅР° СЃС‚РµРЅСѓ
+<span class="nc" id="L8">    WallService.add(Post(authorId = 1, authorName = &quot;test&quot;, content = &quot;Test content&quot;, created = 20220423, likes = 0))</span>
+<span class="nc" id="L9">    WallService.add(Post(authorId = 2, authorName = &quot;user&quot;, content = &quot;Test content 1&quot;, created = 20220425, likes = 0))</span>
+<span class="nc" id="L10">    WallService.add(Post(authorId = 1, authorName = &quot;test&quot;, content = &quot;Test content 2&quot;, created = 20220425, likes = 0))</span>
+
+    /*РћР±РЅРѕРІРёРј РїРѕСЃС‚ СЃ id=2 (РёР·РјРµРЅРёРј РєРѕРЅС‚РµРЅС‚ Рё Р»Р°Р№РєРё, РїСЂРё СЌС‚РѕРј СЃРїРµС†РёР°Р»СЊРЅРѕ СѓРєР°Р¶РµРј РІ РїРѕСЃС‚Рµ РґСЂСѓРіРѕР№ id Р°РІС‚РѕСЂР° Рё РґР°С‚Сѓ СЃРѕР·РґР°РЅРёСЏ,
+      С‡С‚РѕР±С‹ СѓР±РµРґРёС‚СЊСЃСЏ С‡С‚Рѕ РѕРЅРё РЅРµ РёР·РјРµРЅРёР»РёСЃСЊ РїРѕ СѓСЃР»РѕРІРёСЋ Р”Р—)*/
+<span class="nc" id="L14">    WallService.update(Post(2, 3, &quot;user&quot;, &quot;Content after updating&quot;, 19990105, 16))</span>
+
+    //РЎРѕР·РґР°РґРёРј РїРѕСЃС‚ СЃ РІР»РѕР¶РµРЅРёСЏРјРё &quot;Р—Р°РјРµС‚РєР°&quot; Рё &quot;РђСѓРґРёРѕ&quot;
+    val attachmentsList: List&lt;Attachments&gt;
+<span class="nc" id="L18">    attachmentsList = listOf(</span>
+<span class="nc" id="L19">        AttachmentNote(</span>
+<span class="nc" id="L20">            Note(1, 3, 20220515, &quot;РџРµСЂРІР°СЏ Р·Р°РјРµС‚РєР°&quot;, &quot;Р­С‚Рѕ РїРµСЂРІР°СЏ Р·Р°РјРµС‚РєР°&quot;, 0)</span>
+        ),
+<span class="nc" id="L22">        AttachmentAudio(</span>
+<span class="nc" id="L23">            Audio(1, 3, 20220515, &quot;Unknown&quot;, 120, 1)</span>
+        )
+    )
+<span class="nc" id="L26">    WallService.add(</span>
+<span class="nc" id="L27">        Post(</span>
+<span class="nc" id="L28">            authorId = 3,</span>
+<span class="nc" id="L29">            authorName = &quot;Mihey&quot;,</span>
+<span class="nc" id="L30">            content = &quot;РџРѕСЃС‚ СЃ РІР»РѕР¶РµРЅРёСЏРјРё \&quot;Р—Р°РјРµС‚РєР°\&quot; Рё \&quot;РђСѓРґРёРѕ\&quot;&quot;,</span>
+<span class="nc" id="L31">            created = 20220515,</span>
+<span class="nc" id="L32">            likes = 1,</span>
+<span class="nc" id="L33">            attachments = attachmentsList</span>
+        )
+    )
+
+    //РЎРѕР·РґР°РґРёРј РєРѕРјРјРµРЅС‚Р°СЂРёР№ Рє СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РїРѕСЃС‚Сѓ
+<span class="nc" id="L38">    WallService.createComment(Comment(1, 2, 0, 20220518, &quot;РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РїРѕСЃС‚Сѓ&quot;))</span>
+
+    //РЎРѕР·РґР°РґРёРј РєРѕРјРјРµРЅС‚Р°СЂРёР№ Рє РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РїРѕСЃС‚Сѓ РґР»СЏ РІС‹Р·РѕРІР° РёСЃРєР»СЋС‡РµРЅРёСЏ С‚РёРїР° PostNotFoundException
+<span class="nc" id="L41">    try {</span>
+<span class="nc" id="L42">        WallService.createComment(Comment(2, 11, 0, 20220518, &quot;РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РїРѕСЃС‚Сѓ&quot;))</span>
+<span class="nc" id="L43">    } catch (e: PostNotFoundException) {</span>
+<span class="nc" id="L44">        println(e.message);</span>
+    }
+
+<span class="nc" id="L47">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

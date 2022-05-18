@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Attachments.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Posts</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">Attachments.kt</span></div><h1>Attachments.kt</h1><pre class="source lang-java linenums">package data
+
+<span class="fc" id="L3">sealed class Attachments(</span>
+<span class="pc" id="L4">    val type: String</span>
+)
+
+<span class="fc" id="L7">data class AttachmentPhoto(</span>
+<span class="fc" id="L8">    val photo: Photo</span>
+<span class="fc" id="L9">) : Attachments(&quot;photo&quot;)</span>
+
+<span class="fc" id="L11">data class AttachmentDoc(</span>
+<span class="fc" id="L12">    val doc: Doc</span>
+<span class="fc" id="L13">) : Attachments(&quot;doc&quot;)</span>
+
+<span class="fc" id="L15">data class AttachmentVideo(</span>
+<span class="fc" id="L16">    val video: Video</span>
+<span class="fc" id="L17">) : Attachments(&quot;video&quot;)</span>
+
+<span class="fc" id="L19">data class AttachmentAudio(</span>
+<span class="fc" id="L20">    val audio: Audio</span>
+<span class="fc" id="L21">) : Attachments(&quot;audio&quot;)</span>
+
+<span class="fc" id="L23">data class AttachmentNote(</span>
+<span class="fc" id="L24">    val note: Note</span>
+<span class="fc" id="L25">) : Attachments(&quot;note&quot;)</span>
+
+<span class="fc" id="L27">data class Photo(</span>
+<span class="pc" id="L28">    val id: Int,</span>
+<span class="pc" id="L29">    val owner_id: Int,</span>
+<span class="pc" id="L30">    val date: Int,</span>
+<span class="pc" id="L31">    val album_id: Int,</span>
+<span class="pc" id="L32">    val user_id: Int,</span>
+<span class="pc" id="L33">    val text: String,</span>
+<span class="pc" id="L34">    val width: Int,</span>
+<span class="pc" id="L35">    val height: Int</span>
+)
+
+<span class="fc" id="L38">data class Doc(</span>
+<span class="pc" id="L39">    val id: Int,</span>
+<span class="pc" id="L40">    val owner_id: Int,</span>
+<span class="pc" id="L41">    val date: Int,</span>
+<span class="pc" id="L42">    val title: String,</span>
+<span class="pc" id="L43">    val size: Int,</span>
+<span class="pc" id="L44">    val ext: String,</span>
+<span class="pc" id="L45">    val type: Int</span>
+)
+
+<span class="fc" id="L48">data class Video(</span>
+<span class="pc" id="L49">    val id: Int,</span>
+<span class="pc" id="L50">    val owner_id: Int,</span>
+<span class="pc" id="L51">    val date: Int,</span>
+<span class="pc" id="L52">    val title: String,</span>
+<span class="pc" id="L53">    val description: String,</span>
+<span class="pc" id="L54">    val duration: Int,</span>
+<span class="pc" id="L55">    val width: Int,</span>
+<span class="pc" id="L56">    val height: Int</span>
+)
+
+<span class="fc" id="L59">data class Audio(</span>
+<span class="pc" id="L60">    val id: Int,</span>
+<span class="pc" id="L61">    val owner_id: Int,</span>
+<span class="pc" id="L62">    val date: Int,</span>
+<span class="pc" id="L63">    val artist: String,</span>
+<span class="pc" id="L64">    val duration: Int,</span>
+<span class="pc" id="L65">    val album_id: Int</span>
+) {
+    override fun toString(): String {
+<span class="fc" id="L68">        return &quot;Р�СЃРїРѕР»РЅРёС‚РµР»СЊ: $artist, Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ: ${duration / 60} РјРёРЅ.&quot;</span>
+    }
+}
+
+<span class="fc" id="L72">data class Note(</span>
+<span class="pc" id="L73">    val id: Int,</span>
+<span class="pc" id="L74">    val owner_id: Int,</span>
+<span class="pc" id="L75">    val date: Int,</span>
+<span class="pc" id="L76">    val title: String,</span>
+<span class="pc" id="L77">    val text: String,</span>
+<span class="pc" id="L78">    val comments: Int</span>
+) {
+    override fun toString(): String {
+<span class="fc" id="L81">        return &quot;Р—Р°РіРѕР»РѕРІРѕРє: $title, РўРµРєСЃС‚: $text&quot;</span>
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
